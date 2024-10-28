@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "Mulish";
+    src: url("../assets/Mulish-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+
+    font-family: "Mulish", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+}
+
+.App {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
