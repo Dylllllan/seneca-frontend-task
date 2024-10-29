@@ -3,9 +3,8 @@
 
     border-radius: 100px;
     border: 2px solid #F9D29F;
-    // Outer and inner shadow
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+    // Set position to relative so that the slider can be absolutely positioned
     position: relative;
 
     .slider, .options {
@@ -25,8 +24,8 @@
             transition: flex-grow 0.5s;
         }
 
-        // Slider button that shows behind the selected option
-        .sliderButton {
+        // Slider cell that shows behind the selected option
+        .sliderCell {
             flex-grow: 1;
 
             border-radius: 100px;
