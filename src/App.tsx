@@ -1,7 +1,13 @@
+import { QUESTIONS } from "./const";
+
+import ToggleQuestion from "./components/ToggleQuestion";
+
 function App() {
+    const question = QUESTIONS[0];
+
     return (
-        <div className="App" style={{ textAlign: "center" }}>
-            <p>Hello world!</p>
+        <div className="App">
+            <ToggleQuestion question={question.question} answers={question.answers} />
         </div>
     );
 }

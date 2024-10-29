@@ -1,0 +1,64 @@
+.ToggleAnswer {
+    margin: 10px 0;
+
+    border-radius: 100px;
+    border: 2px solid #F9D29F;
+    // Outer and inner shadow
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    position: relative;
+
+    .slider, .options {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .slider {
+        position: absolute;
+
+        // Expand the slider to fill the size of the parent (driven by the options)
+        width: 100%;
+        height: 100%;
+
+        // Animate changes to the slider padding either side of the button
+        .sliderPadding {
+            transition: flex-grow 0.5s;
+        }
+
+        // Slider button that shows behind the selected option
+        .sliderButton {
+            flex-grow: 1;
+
+            border-radius: 100px;
+            background-color: rgba(255, 255, 255, 0.5);
+
+            // Animate changes to the border radius
+            transition: border-radius 0.5s;
+        }
+    }
+
+    .options {
+        // Vertically stretch the options to fill the parent
+        align-items: stretch;
+
+        .option {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 1.05em;
+
+            flex-grow: 1;
+            flex-basis: 0;
+
+            box-sizing: border-box;
+            padding: 15px;
+            
+            // Layer the options on top of the (absolutely positioned) slider
+            z-index: 1;
+
+            // Vertically center the text
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}

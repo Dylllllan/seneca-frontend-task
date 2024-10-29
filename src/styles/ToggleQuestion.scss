@@ -1,0 +1,21 @@
+.ToggleQuestion {
+    width: 90%;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px;
+
+    background: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
+    border-radius: 20px;
+
+    h2, h3 {
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .answers {
+        width: 80%;
+        max-width: 700px;
+
+        margin: auto;
+    }
+}
