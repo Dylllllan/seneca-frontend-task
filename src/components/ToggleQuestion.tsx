@@ -52,7 +52,7 @@ function ToggleQuestion({ question, answers }: Props) {
             return createLinearGradient(CORRECT_BACKGROUND_GRADIENT[0], CORRECT_BACKGROUND_GRADIENT[1]);
         }
 
-        const scale = score / selectedOptions.length;
+        const scale = score / (selectedOptions.length - 1);
         const gradientStart = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[0], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[0], scale);
         const gradientEnd = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[1], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[1], scale);
 

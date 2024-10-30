@@ -30,9 +30,6 @@
 
             border-radius: 100px;
             background-color: rgba(255, 255, 255, 0.5);
-
-            // Animate changes to the border radius
-            transition: border-radius 0.5s;
         }
     }
 
@@ -58,6 +55,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+    }
+}
+
+// When the width of the screen is less than 700px, the options should be stacked vertically
+@media (max-width: 700px) {
+    .ToggleAnswer {
+        border-radius: 15px;
+
+        .slider, .options {
+            flex-direction: column;
+        }
+
+        .slider .sliderCell {
+            border-radius: 13px;
         }
     }
 }
