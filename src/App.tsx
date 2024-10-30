@@ -1,14 +1,13 @@
 import { QUESTIONS } from "./const";
-
-import ToggleQuestion from "./components/ToggleQuestion";
+import { shuffleArray } from "./utils";
+import ToggleQuiz from "./components/ToggleQuiz";
 
 function App() {
-    const index = 1;
-    const question = QUESTIONS[index];
+    const questions = shuffleArray(QUESTIONS);
 
     return (
         <div className="App">
-            <ToggleQuestion key={index} question={question.question} answers={question.answers} />
+            <ToggleQuiz questions={questions} />
         </div>
     );
 }
