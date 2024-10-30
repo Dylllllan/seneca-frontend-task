@@ -13,33 +13,33 @@ function ToggleQuestion({ question, answers }: Props) {
     const shuffledAnswers = useMemo(() => shuffleArray(answers), [answers]);
 
     // Initialise the selected answers with a random option for each answer
-    const [selectedAnswers, setSelectedAnswers] = useState<string[]>(
+    const [selectedOptions, setSelectedOptions] = useState<string[]>(
         repeatUntil(
             // Choose a random option for each answer
             () => {
                 return shuffledAnswers.map(({ options }) => options[Math.floor(Math.random() * options.length)]);
             },
-            // Check that there is at least one incorrect answer
-            (selectedAnswers) => selectedAnswers.some((selectedAnswer: string, index: number) => selectedAnswer !== shuffledAnswers[index].correct)
+            // Check that there is at least one incorrect option
+            (selectedOptions) => selectedOptions.some((selectedOption: string, index: number) => selectedOption !== shuffledAnswers[index].correct)
         ));
 
-    // Calculate the score based on the selected answers
-    const score = selectedAnswers.reduce((score, selectedAnswer, index) => {
-        const correctAnswer = shuffledAnswers[index].correct;
-        return score + (selectedAnswer === correctAnswer ? 1 : 0);
+    // Calculate the score based on the selected options to the answers
+    const score = selectedOptions.reduce((score, selectedOption, index) => {
+        const correctOption = shuffledAnswers[index].correct;
+        return score + (selectedOption === correctOption ? 1 : 0);
     }, 0);
 
-    // Check if all answers are correct
-    const isCorrect = score === selectedAnswers.length;
+    // Check if all selected options to the answers are correct
+    const isCorrect = score === selectedOptions.length;
 
-    // Function to update the selected answers state when an option is selected
+    // Function to update the selected options state when an option is selected
     const selectAnswer = (index: number, option: string) => {
         if (isCorrect) {
             // All answers are correct, so the question is locked
             return;
         }
 
-        setSelectedAnswers((currentAnswers) => {
+        setSelectedOptions((currentAnswers) => {
             return currentAnswers.map((currentAnswer, currentIndex) => {
                 return currentIndex === index ? option : currentAnswer;
             });
@@ -51,7 +51,7 @@ function ToggleQuestion({ question, answers }: Props) {
             return createLinearGradient(CORRECT_BACKGROUND_GRADIENT[0], CORRECT_BACKGROUND_GRADIENT[1]);
         }
 
-        const scale = score / selectedAnswers.length;
+        const scale = score / selectedOptions.length;
         const gradientStart = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[0], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[0], scale);
         const gradientEnd = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[1], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[1], scale);
 
@@ -68,7 +68,7 @@ function ToggleQuestion({ question, answers }: Props) {
                     <ToggleAnswer
                         key={index}
                         options={options}
-                        selectedOption={selectedAnswers[index]}
+                        selectedOption={selectedOptions[index]}
                         onSelect={(option) => selectAnswer(index, option)}
                     />
                 ))}
