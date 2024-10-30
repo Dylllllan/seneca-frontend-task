@@ -64,12 +64,28 @@
     .ToggleAnswer {
         border-radius: 15px;
 
-        .slider, .options {
+        // Hide overflow to clip the slider cell
+        overflow: hidden;
+
+        .slider {
             flex-direction: column;
+
+            .sliderCell {
+                // No border radius on the slider cell - clipped by the parent
+                border-radius: 0;
+            }
         }
 
-        .slider .sliderCell {
-            border-radius: 13px;
+        .options {
+            // Use a grid layout to stack the options vertically with equal height
+            display: grid;
+
+            grid-template-columns: 1fr;
+            grid-auto-rows: 1fr;
+
+            .option {
+                padding: 10px;
+            }
         }
     }
 }
