@@ -12,6 +12,9 @@
         flex-direction: row;
     }
 
+    // CSS variable to control the transition duration
+    --transition-duration: 0.5s;
+
     .slider {
         position: absolute;
 
@@ -19,9 +22,12 @@
         width: 100%;
         height: 100%;
 
+        // Passthrough click events
+        pointer-events: none;
+
         // Animate changes to the slider padding either side of the button
         .sliderPadding {
-            transition: flex-grow 0.5s;
+            transition: flex-grow var(--transition-duration);
         }
 
         // Slider cell that shows behind the selected option
@@ -48,8 +54,7 @@
             box-sizing: border-box;
             padding: 15px;
             
-            // Layer the options on top of the (absolutely positioned) slider
-            z-index: 1;
+            transition: color var(--transition-duration);
 
             // Vertically center the text
             display: flex;
@@ -67,13 +72,11 @@
         // Hide overflow to clip the slider cell
         overflow: hidden;
 
+        // Faster transition in the vertical layout
+        --transition-duration: 0.3s;
+
         .slider {
             flex-direction: column;
-
-            // Faster transition in the vertical layout
-            .sliderPadding {
-                transition: flex-grow 0.3s;
-            }
 
             .sliderCell {
                 // No border radius on the slider cell - clipped by the parent

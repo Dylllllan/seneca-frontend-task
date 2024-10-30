@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 
 import "../styles/ToggleQuestion.scss";
 import ToggleAnswer from "./ToggleAnswer";
-import { CORRECT_BACKGROUND_GRADIENT, INCORRECT_BACKGROUND_GRADIENT, PARTIALLY_CORRECT_BACKGROUND_GRADIENT } from "../const";
+import { CORRECT_GRADIENT, START_INCORRECT_GRADIENT, END_INCORRECT_GRADIENT } from "../const";
 import { createLinearGradient, interpolateColors, repeatUntil, shuffleArray } from "../utils";
 import { Question } from "../types";
 
@@ -49,12 +49,12 @@ function ToggleQuestion({ question, answers }: Props) {
     // Function to calculate the background gradient based on the current score for the question
     const getBackgroundGradient = (isCorrect: boolean, score: number) => {
         if (isCorrect) {
-            return createLinearGradient(CORRECT_BACKGROUND_GRADIENT[0], CORRECT_BACKGROUND_GRADIENT[1]);
+            return createLinearGradient(CORRECT_GRADIENT[0], CORRECT_GRADIENT[1]);
         }
 
         const scale = score / (selectedOptions.length - 1);
-        const gradientStart = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[0], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[0], scale);
-        const gradientEnd = interpolateColors(INCORRECT_BACKGROUND_GRADIENT[1], PARTIALLY_CORRECT_BACKGROUND_GRADIENT[1], scale);
+        const gradientStart = interpolateColors(START_INCORRECT_GRADIENT[0], END_INCORRECT_GRADIENT[0], scale);
+        const gradientEnd = interpolateColors(START_INCORRECT_GRADIENT[1], END_INCORRECT_GRADIENT[1], scale);
 
         return createLinearGradient(gradientStart, gradientEnd);
     };
