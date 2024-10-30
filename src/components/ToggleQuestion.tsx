@@ -46,6 +46,7 @@ function ToggleQuestion({ question, answers }: Props) {
         });
     };
 
+    // Function to calculate the background gradient based on the current score for the question
     const getBackgroundGradient = (isCorrect: boolean, score: number) => {
         if (isCorrect) {
             return createLinearGradient(CORRECT_BACKGROUND_GRADIENT[0], CORRECT_BACKGROUND_GRADIENT[1]);
@@ -70,6 +71,7 @@ function ToggleQuestion({ question, answers }: Props) {
                         options={options}
                         selectedOption={selectedOptions[index]}
                         onSelect={(option) => selectAnswer(index, option)}
+                        locked={isCorrect}
                     />
                 ))}
             </div>

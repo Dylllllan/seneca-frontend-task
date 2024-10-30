@@ -7,9 +7,10 @@ type Props = {
     options: string[];
     selectedOption: string;
     onSelect: (option: string) => void;
+    locked: boolean;
 };
 
-function ToggleAnswer({ options, selectedOption, onSelect }: Props) {
+function ToggleAnswer({ options, selectedOption, onSelect, locked }: Props) {
     // Shuffle the order of the options when the options change
     const shuffledOptions = useMemo(() => shuffleArray(options), [options]);
 
@@ -28,7 +29,7 @@ function ToggleAnswer({ options, selectedOption, onSelect }: Props) {
             </div>
             <div className="options">
                 {shuffledOptions.map((option, index) => (
-                    <div key={index} className="option" onClick={() => onSelect(option)}>
+                    <div key={index} className="option" onClick={() => onSelect(option)} style={{ cursor: locked ? "default" : "pointer" }}>
                         {option}
                     </div>
                 ))}
