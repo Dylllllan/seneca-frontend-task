@@ -3,11 +3,12 @@ import { QUESTIONS } from "./const";
 import ToggleQuestion from "./components/ToggleQuestion";
 
 function App() {
-    const question = QUESTIONS[0];
+    const index = 1;
+    const question = QUESTIONS[index];
 
     return (
         <div className="App">
-            <ToggleQuestion question={question.question} answers={question.answers} />
+            <ToggleQuestion key={index} question={question.question} answers={question.answers} />
         </div>
     );
 }
