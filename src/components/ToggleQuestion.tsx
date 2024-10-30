@@ -67,7 +67,7 @@ function ToggleQuestion({ question, answers }: Props) {
             <div className="answers">
                 {shuffledAnswers.map(({ options }, index) => (
                     <ToggleAnswer
-                        key={index}
+                        key={answers.indexOf(shuffledAnswers[index])}
                         options={options}
                         selectedOption={selectedOptions[index]}
                         onSelect={(option) => selectAnswer(index, option)}

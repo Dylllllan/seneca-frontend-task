@@ -27,9 +27,9 @@ function ToggleAnswer({ options, selectedOption, onSelect, locked }: Props) {
                 <div className="sliderCell" />
                 <div className="sliderPadding" style={{ flexGrow: rightSliderPadding }} />
             </div>
-            <div className="options">
-                {shuffledOptions.map((option, index) => (
-                    <div key={index} className="option" onClick={() => onSelect(option)} style={{ cursor: locked ? "default" : "pointer" }}>
+            <div className="options" style={{ cursor: locked ? "default" : "pointer" }}>
+                {shuffledOptions.map((option) => (
+                    <div key={options.indexOf(option)} className="option" onClick={() => onSelect(option)}>
                         {option}
                     </div>
                 ))}
