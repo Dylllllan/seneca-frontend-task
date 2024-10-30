@@ -1,15 +1,15 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import useShuffledArray from "../hooks/useShuffledArray";
 
 import ToggleQuestion from "./ToggleQuestion";
 import { Question } from "../types";
-import { shuffleArray } from "../utils";
 
 type Props = {
     questions: Question[];
 };
 
 function ToggleQuiz({questions}: Props) {
-    const shuffledQuestions = useMemo(() => shuffleArray(questions), [questions]);
+    const shuffledQuestions = useShuffledArray(questions);
 
     const [questionIndex, setQuestionIndex] = useState(0);
 

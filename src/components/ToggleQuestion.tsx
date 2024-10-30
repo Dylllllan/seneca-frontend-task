@@ -1,16 +1,18 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import useShuffledArray from "../hooks/useShuffledArray";
 
 import "../styles/ToggleQuestion.scss";
 import ToggleAnswer from "./ToggleAnswer";
+
 import { CORRECT_GRADIENT, START_INCORRECT_GRADIENT, END_INCORRECT_GRADIENT } from "../const";
-import { createLinearGradient, interpolateColors, repeatUntil, shuffleArray } from "../utils";
+import { createLinearGradient, interpolateColors, repeatUntil } from "../utils";
 import { Question } from "../types";
 
 type Props = Question;
 
 function ToggleQuestion({ question, answers }: Props) {
     // Shuffle the order of the answers when the answers change
-    const shuffledAnswers = useMemo(() => shuffleArray(answers), [answers]);
+    const shuffledAnswers = useShuffledArray(answers);
 
     // Initialise the selected answers with a random option for each answer
     const [selectedOptions, setSelectedOptions] = useState<string[]>(

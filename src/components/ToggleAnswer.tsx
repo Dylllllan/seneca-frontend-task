@@ -1,7 +1,6 @@
-import { useMemo } from "react";
+import useShuffledArray from "../hooks/useShuffledArray";
 
 import "../styles/ToggleAnswer.scss";
-import { shuffleArray } from "../utils";
 
 type Props = {
     options: string[];
@@ -12,7 +11,7 @@ type Props = {
 
 function ToggleAnswer({ options, selectedOption, onSelect, locked }: Props) {
     // Shuffle the order of the options when the options change
-    const shuffledOptions = useMemo(() => shuffleArray(options), [options]);
+    const shuffledOptions = useShuffledArray(options);
 
     const selectedIndex = shuffledOptions.indexOf(selectedOption);
 
