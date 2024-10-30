@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import ToggleQuestion from "./ToggleQuestion";
 import { Question } from "../types";
+import { shuffleArray } from "../utils";
 
 type Props = {
     questions: Question[];
 };
 
 function ToggleQuiz({questions}: Props) {
+    const shuffledQuestions = useMemo(() => shuffleArray(questions), [questions]);
+
     const [questionIndex, setQuestionIndex] = useState(0);
 
     const previousQuestion = () => {
@@ -20,11 +23,11 @@ function ToggleQuiz({questions}: Props) {
         setQuestionIndex((questionIndex + 1) % questions.length);
     };
 
-    const question = questions[questionIndex];
+    const question = shuffledQuestions[questionIndex];
 
     return (
         <div className="ToggleQuiz">
-            <ToggleQuestion key={questionIndex} question={question.question} answers={question.answers} />
+            <ToggleQuestion key={questions.indexOf(question)} question={question.question} answers={question.answers} />
             <div className="navigation">
                 <button onClick={previousQuestion}>Previous</button>
                 <button onClick={nextQuestion}>Next</button>
