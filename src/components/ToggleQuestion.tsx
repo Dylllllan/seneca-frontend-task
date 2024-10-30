@@ -4,14 +4,9 @@ import "../styles/ToggleQuestion.scss";
 import ToggleAnswer from "./ToggleAnswer";
 import { CORRECT_BACKGROUND_GRADIENT, INCORRECT_BACKGROUND_GRADIENT, PARTIALLY_CORRECT_BACKGROUND_GRADIENT } from "../const";
 import { createLinearGradient, interpolateColors, repeatUntil, shuffleArray } from "../utils";
+import { Question } from "../types";
 
-type Props = {
-    question: string;
-    answers: {
-        options: string[];
-        correct: string;
-    }[];
-};
+type Props = Question;
 
 function ToggleQuestion({ question, answers }: Props) {
     // Shuffle the order of the answers when the answers change

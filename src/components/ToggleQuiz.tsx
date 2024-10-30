@@ -1,15 +1,10 @@
 import { useState } from "react";
 
 import ToggleQuestion from "./ToggleQuestion";
+import { Question } from "../types";
 
 type Props = {
-    questions: {
-        question: string;
-        answers: {
-            options: string[];
-            correct: string;
-        }[];
-    }[];
+    questions: Question[];
 };
 
 function ToggleQuiz({questions}: Props) {
