@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import "../styles/ToggleQuestion.scss";
 import ToggleAnswer from "./ToggleAnswer";
 import { CORRECT_BACKGROUND_GRADIENT, INCORRECT_BACKGROUND_GRADIENT, PARTIALLY_CORRECT_BACKGROUND_GRADIENT } from "../const";
-import { createLinearGradient, interpolateColors } from "../utils";
+import { createLinearGradient, interpolateColors, repeatUntil, shuffleArray } from "../utils";
 
 type Props = {
     question: string;
@@ -14,12 +14,23 @@ type Props = {
 };
 
 function ToggleQuestion({ question, answers }: Props) {
-    // Initialise the selected answers as the first option for each answer
-    const [selectedAnswers, setSelectedAnswers] = useState<string[]>(answers.map(({ options }) => options[0]));
+    // Shuffle the order of the answers when the answers change
+    const shuffledAnswers = useMemo(() => shuffleArray(answers), [answers]);
+
+    // Initialise the selected answers with a random option for each answer
+    const [selectedAnswers, setSelectedAnswers] = useState<string[]>(
+        repeatUntil(
+            // Choose a random option for each answer
+            () => {
+                return shuffledAnswers.map(({ options }) => options[Math.floor(Math.random() * options.length)]);
+            },
+            // Check that there is at least one incorrect answer
+            (selectedAnswers) => selectedAnswers.some((selectedAnswer: string, index: number) => selectedAnswer !== shuffledAnswers[index].correct)
+        ));
 
     // Calculate the score based on the selected answers
     const score = selectedAnswers.reduce((score, selectedAnswer, index) => {
-        const correctAnswer = answers[index].correct;
+        const correctAnswer = shuffledAnswers[index].correct;
         return score + (selectedAnswer === correctAnswer ? 1 : 0);
     }, 0);
 
@@ -51,14 +62,14 @@ function ToggleQuestion({ question, answers }: Props) {
 
         return createLinearGradient(gradientStart, gradientEnd);
     };
-    
+
     const backgroundGradient = getBackgroundGradient(isCorrect, score);
 
     return (
         <div className="ToggleQuestion" style={{ background: backgroundGradient }}>
             <h2 className="question">{question}</h2>
             <div className="answers">
-                {answers.map(({ options }, index) => (
+                {shuffledAnswers.map(({ options }, index) => (
                     <ToggleAnswer
                         key={index}
                         options={options}
