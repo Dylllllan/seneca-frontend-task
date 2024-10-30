@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useShuffledArray from "../hooks/useShuffledArray";
 
+import "../styles/ToggleQuiz.scss";
 import ToggleQuestion from "./ToggleQuestion";
 import { Question } from "../types";
 
@@ -29,8 +30,8 @@ function ToggleQuiz({questions}: Props) {
         <div className="ToggleQuiz">
             <ToggleQuestion key={questions.indexOf(question)} question={question.question} answers={question.answers} />
             <div className="navigation">
-                <button onClick={previousQuestion}>Previous</button>
-                <button onClick={nextQuestion}>Next</button>
+                <div className="arrow" onClick={previousQuestion}></div>
+                <div className="arrow" onClick={nextQuestion}></div>
             </div>
         </div>
     )

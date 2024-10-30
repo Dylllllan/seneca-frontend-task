@@ -1,0 +1,26 @@
+.ToggleQuiz .navigation {
+    // Align the arrows to the left and right of the container
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 10px;
+
+    .arrow {
+        height: 30px;
+        width: 30px;
+
+        cursor: pointer;
+
+        background-image: url("../assets/chevron-right.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        background-position: center;
+
+        &:first-child {
+            // Flip the arrow to point left
+            transform: scaleX(-1);
+        }
+    }
+}
