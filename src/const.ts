@@ -1,33 +1,36 @@
 import { Question, RGBColor } from "./types";
 
 export const QUESTIONS: Question[] = [
-    /*
-    Q. "What are the ideal conditions inside an office?" A. (good pay, bad pay) (lot of
-    meetings, less meetings), (free coffee, expensive coffee), (bear in office, dog in
-    office).
-    */
     {
-        question: "What are the ideal conditions inside an office?",
+        question: "Which items are needed to survive on a deserted island?",
         answers: [
-            { options: ["good pay", "bad pay"], correct: "good pay" },
-            { options: ["lot of meetings", "less meetings"], correct: "less meetings" },
-            { options: ["free coffee", "expensive coffee"], correct: "free coffee" },
-            { options: ["bear in office", "dog in office"], correct: "dog in office" }
+            { options: ["Sunscreen", "Compass"], correct: "Compass" },
+            { options: ["Bottle of water", "Bottle of cola", "Bottle of milk"], correct: "Bottle of water" },
+            { options: ["Map", "Book"], correct: "Map" }
         ]
     },
-
-    /*
-    Q. "Which are the best sports people & teams?"
-    A. (Liverpool, Chelsea, Man Utd), (Serena Williams, Naomi Osaka)
-    */
     {
-        question: "Which are the best sports people & teams?",
+        question: "Which of these are types of renewable energy?",
         answers: [
-            { options: ["Liverpool", "Chelsea", "Man Utd"], correct: "Liverpool" },
-            { options: ["Serena Williams", "Naomi Osaka"], correct: "Serena Williams" }
+            { options: ["Solar", "Coal"], correct: "Solar" },
+            { options: ["Wind", "Nuclear", "Oil"], correct: "Wind" }
         ]
     },
-
+    {
+        question: "Which of these are fundamental forces in physics?",
+        answers: [
+            { options: ["Gravity", "Friction"], correct: "Gravity" },
+            { options: ["Electromagnetic", "Tension", "Elastic"], correct: "Electromagnetic" },
+        ]
+    },
+    {
+        question: "Which of these characters are from Greek mythology?",
+        answers: [
+            { options: ["Zeus", "Odin"], correct: "Zeus" },
+            { options: ["Hercules", "Thor", "Loki"], correct: "Hercules" },
+            { options: ["Athena", "Freya"], correct: "Athena" }
+        ]
+    },
     {
         question: "An animal cell contains:",
         answers: [
