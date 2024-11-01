@@ -9,7 +9,7 @@ type Props = {
     questions: Question[];
 };
 
-function ToggleQuiz({questions}: Props) {
+function ToggleQuiz({ questions }: Props) {
     const shuffledQuestions = useShuffledArray(questions);
 
     const [questionIndex, setQuestionIndex] = useState(0);

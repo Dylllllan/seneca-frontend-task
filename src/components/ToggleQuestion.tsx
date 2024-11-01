@@ -42,6 +42,7 @@ function ToggleQuestion({ question, answers }: Props) {
         }
 
         setSelectedOptions((currentAnswers) => {
+            // Immutable update of the selected options state
             return currentAnswers.map((currentAnswer, currentIndex) => {
                 return currentIndex === index ? option : currentAnswer;
             });

@@ -20,6 +20,6 @@ body {
     top: 50%;
     transform: translateY(-50%);
 
-    padding: 0 5%;
+    padding: 0 max(5%, 16px);
     box-sizing: border-box;
 }

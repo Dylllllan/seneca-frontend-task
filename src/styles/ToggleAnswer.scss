@@ -30,7 +30,7 @@
             transition: flex-grow var(--transition-duration);
         }
 
-        // Slider cell that shows behind the selected option
+        // Slider cell that shows in front of the selected option
         .sliderCell {
             flex-grow: 1;
 
@@ -53,7 +53,7 @@
 
             box-sizing: border-box;
             padding: 15px;
-            
+
             transition: color var(--transition-duration);
 
             // Vertically center the text
