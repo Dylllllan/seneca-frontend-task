@@ -15,7 +15,7 @@ function ToggleQuestion({ question, answers }: Props) {
     const shuffledAnswers = useShuffledArray(answers);
 
     // Initialise the selected answers with a random option for each answer
-    const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    const [selectedOptions, setSelectedOptions] = useState<string[]>(() =>
         repeatUntil(
             // Choose a random option for each answer
             () => {
