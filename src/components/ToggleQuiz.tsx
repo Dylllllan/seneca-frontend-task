@@ -30,8 +30,8 @@ function ToggleQuiz({ questions }: Props) {
         <div className="ToggleQuiz">
             <ToggleQuestion key={questions.indexOf(question)} question={question.question} answers={question.answers} />
             <div className="navigation">
-                <div className="arrow" onClick={previousQuestion}></div>
-                <div className="arrow" onClick={nextQuestion}></div>
+                <div className="arrow" onClick={previousQuestion} role="button" aria-label="Previous question"></div>
+                <div className="arrow" onClick={nextQuestion} role="button" aria-label="Next question"></div>
             </div>
         </div>
     )

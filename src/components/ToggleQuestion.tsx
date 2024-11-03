@@ -78,7 +78,10 @@ function ToggleQuestion({ question, answers }: Props) {
                     />
                 ))}
             </div>
-            <h3 className="answerStatus">The answer is {isCorrect ? "correct" : "incorrect"}</h3>
+            <h3 className="answerStatus"
+                aria-live="polite" aria-label={`${score} out of ${selectedOptions.length} answers are correct`}>
+                {`The answer is ${isCorrect ? "correct" : "incorrect"}`}
+            </h3>
         </div>
     );
 }
