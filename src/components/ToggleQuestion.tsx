@@ -6,7 +6,7 @@ import ToggleAnswer from "./ToggleAnswer";
 
 import { CORRECT_GRADIENT, START_INCORRECT_GRADIENT, END_INCORRECT_GRADIENT } from "../const";
 import { createLinearGradient, interpolateColors, repeatUntil } from "../utils";
-import { Question } from "../types";
+import { Answer, Question } from "../types";
 
 type Props = Question;
 
@@ -19,15 +19,15 @@ function ToggleQuestion({ question, answers }: Props) {
         repeatUntil(
             // Choose a random option for each answer
             () => {
-                return shuffledAnswers.map(({ options }) => options[Math.floor(Math.random() * options.length)]);
+                return answers.map(({ options }) => options[Math.floor(Math.random() * options.length)]);
             },
             // Check that there is at least one incorrect option
-            (selectedOptions) => selectedOptions.some((selectedOption: string, index: number) => selectedOption !== shuffledAnswers[index].correct)
+            (selectedOptions) => selectedOptions.some((selectedOption: string, index: number) => selectedOption !== answers[index].correct)
         ));
 
     // Calculate the score based on the selected options to the answers
     const score = selectedOptions.reduce((score, selectedOption, index) => {
-        const correctOption = shuffledAnswers[index].correct;
+        const correctOption = answers[index].correct;
         return score + (selectedOption === correctOption ? 1 : 0);
     }, 0);
 
@@ -68,15 +68,18 @@ function ToggleQuestion({ question, answers }: Props) {
         <div className="ToggleQuestion" style={{ background: backgroundGradient }}>
             <h2 className="question">{question}</h2>
             <div className="answers">
-                {shuffledAnswers.map(({ options }, index) => (
-                    <ToggleAnswer
-                        key={answers.indexOf(shuffledAnswers[index])}
-                        options={options}
-                        selectedOption={selectedOptions[index]}
-                        onSelect={(option) => selectAnswer(index, option)}
-                        locked={isCorrect}
-                    />
-                ))}
+                {shuffledAnswers.map((answer: Answer) => {
+                    const index = answers.indexOf(answer);
+                    return (
+                        <ToggleAnswer
+                            key={index}
+                            options={answer.options}
+                            selectedOption={selectedOptions[index]}
+                            onSelect={(option) => selectAnswer(index, option)}
+                            locked={isCorrect}
+                        />
+                    );
+                })}
             </div>
             <h3 className="answerStatus"
                 aria-live="polite" aria-label={`${score} out of ${selectedOptions.length} answers are correct`}>
